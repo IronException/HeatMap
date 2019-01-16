@@ -14,6 +14,10 @@ public String[] getDataFormat(String sorting, String[] symbols){
     }
     
   }
+  
+  for(int i = 0; i < rV.length; i ++){
+    println("[" + i + "]: (" + rV[i] + ")");
+  }
   return rV;
 }
 
@@ -28,21 +32,29 @@ public HashMap<String, String> getData(String[] dataFormat, String data){
   for(int i = 0; i < data.length() && ind < dataFormat.length; i ++){
     
   
-    if(compStart(data, i, dataFormat[ind])){
-      // u r in here if 
+    if(dataFormat[ind].equals(data.substring(i, i + dataFormat[ind].length()))){
+      
       rV.put(dataFormat[ind - 1], data.substring(lastInd, i));
       
       lastInd = i + dataFormat[ind].length();
-      i = lastInd - 1;
-      
       ind += 2;
+      
+      
     }
   }
   rV.put(dataFormat[ind - 1], data.substring(lastInd));
   
+  println(rV);
   return rV;
 }
 
+
+public void println(HashMap<String, String> in){
+  String[] entr = in.keySet().toArray(new String[0]);
+  for(int i = 0; i < entr.length; i ++){
+    println("[" + entr[i] + "]: " + in.get(entr[i]));
+  }
+}
 
 // TODO what does contains do?
 /*public boolean compareContains(String[] data, String var, int ind){

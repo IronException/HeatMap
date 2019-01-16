@@ -1,6 +1,6 @@
 
 
-void setup(){
+void doGauss(){
 
   double[][] prob = {
         // x = 1, y = 2, z = 3
@@ -47,9 +47,6 @@ public double[] gaussElimination(double[][] input, double[] solution){
       }
       
     }
-    
-    
-    
   }
   
   return solution;
