@@ -8,25 +8,36 @@ int yel = color(255, 244, 52);
 int whi = color(249, 249, 249);
 
 
+int xPos, yPos, xSize, ySize;
+
 Function function;
 
 void setup(){
-  //fullScreen();
-  size(200, 200);
+  fullScreen();
+  //size(20, 10);
   
+  
+  xPos = -32;
+  yPos = -32;
+  xSize = 64;
+  ySize = 64;
   
   
   String[] dataFormat = getDataFormat("x z d", new String[]{"x", "z", "d"});
   
-  String[] info = new String[0];
+  //String[] info = new String[0];
   String[] inf0 = new String[]{
-    "20 0 0",
-    "30 0 1",
-    "0 15 0",
-    "0 20 0",
-    "0 25 0",
-    "0 30 0"
+    "2 0 0",
+    "0 0 1",
+    "3 0 1",
+    "0 2 0",
+    "0 2.5 0",
+    "0 3 0"
   };
+  
+  String[] info = loadStrings("values.txt");
+  
+  
   double[] x = new double[info.length];
   double[] y = new double[info.length];
   double[] days = new double[info.length];
@@ -45,8 +56,10 @@ void setup(){
   
   function = new Function(stuff);
   
+  
+  
   init();
-  //thread("makeMap");
+  thread("makeMap");
   
 }
 
@@ -60,11 +73,11 @@ public void init(){
 
 public void makeMap(){
   
-  makeHeatmap(-width / 2, -height / 2, width, height, function);
+  makeHeatmap(xPos, yPos, xSize, ySize, function);
   transfer();
   
   ended = true;
-  println(min + " < " + max);
+  println(min + " < " + max + "---------------");
 }
 
 void draw(){
@@ -102,12 +115,12 @@ public void transfer(){
   }
 }
 
-public void makeHeatmap(int xPos, int yPos, int xSize, int ySize, Function f){
+public void makeHeatmap(float xPos, float yPos, float xSize, float ySize, Function f){
   col = new float[width * height];
   
   for(int x = 0; x < width; x ++){
     for(int y = 0; y < height; y ++){
-      col[x + y * width] = f.getPos(xPos + x * xSize / width, yPos + y * ySize / height);
+      col[x + y * width] = f.getPos(xPos + x * xSize / (width - 1.0), yPos + y * ySize / (height - 1.0));
       if(x == 0 && y == 0){
         min = col[0];
         max = col[0];

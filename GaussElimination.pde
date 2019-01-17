@@ -23,18 +23,28 @@ void doGauss(){
   
 }
 
+
+
 public double[] gaussElimination(double[][] input, double[] solution){
   int rows = input.length;
   int cols = rows;
+  
+  int[] nan = new int[0];
+  
   for(int row = 0; row < rows; row ++){
     
     // 1. set c[row][row] equal to 1
     double factor = input[row][row];
+    if(factor == 0){
+      nan = append(nan, row);
+    } else {
     for(int col = 0; col < cols; col ++){
       input[row][col] /= factor;
     }
     solution[row] /= factor;
     
+    
+    println("-- " + factor);
     
     // 2. set c[row][row2] equal to 0
     for(int row2 = 0; row2 < rows; row2 ++){
@@ -47,11 +57,15 @@ public double[] gaussElimination(double[][] input, double[] solution){
       }
       
     }
+    
+    print(input);
+    println("-- " + factor);
+    
+  }
   }
   
   return solution;
 }
-
 
 static public void print(double [][] matrix)
 {

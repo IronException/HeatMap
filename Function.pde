@@ -11,7 +11,7 @@ public class Function{
   
   double[] vars;
   
-  public float getPos(int x, int y){
+  public float getPos(float x, float y){
     /*
     if(y == 0){
       return x;
@@ -28,7 +28,8 @@ public class Function{
         rV += yy * vars[i];
       }
     }
-    
+    //println(x + " " + y);
+    //rV = 1.0 / (y + x);
     return (float) rV;
   }
   

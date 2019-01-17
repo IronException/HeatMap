@@ -8,17 +8,21 @@ public String[] getDataFormat(String sorting, String[] symbols){
     cur += sorting.charAt(i);
     ind = compareContains(symbols, cur);
     if(ind != -1){
-      rV = append(rV, cur.substring(0, cur.length() - ind));
-      rV = append(rV, cur.substring(cur.length() - ind));
+      rV = append(rV, cur.substring(0, cur.length() - symbols[ind].length()));
+      rV = append(rV, cur.substring(cur.length() - symbols[ind].length()));
       cur = "";
     }
     
   }
   
+  
+  return rV;
+}
+
+public void println(double[] rV){
   for(int i = 0; i < rV.length; i ++){
     println("[" + i + "]: (" + rV[i] + ")");
   }
-  return rV;
 }
 
 
@@ -44,7 +48,7 @@ public HashMap<String, String> getData(String[] dataFormat, String data){
   }
   rV.put(dataFormat[ind - 1], data.substring(lastInd));
   
-  println(rV);
+  //println(rV);
   return rV;
 }
 
