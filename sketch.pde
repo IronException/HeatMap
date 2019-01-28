@@ -10,17 +10,28 @@ int whi = color(249, 249, 249);
 
 int xPos, yPos, xSize, ySize;
 
+
 Function function;
 
+
+boolean fullScreen = true;
+
 void setup(){
-  fullScreen();
-  //size(20, 10);
   
+  if(fullScreen){
+    fullScreen();
+    
+  } else {
+    size(200, 200);
+    
+  }
+  // TODO zoom + move
   
-  xPos = -32;
-  yPos = -32;
-  xSize = 64;
-  ySize = 64;
+  xPos = -width / 2;
+  yPos = -height / 2;
+  xSize = width;
+  ySize = height;
+  
   
   
   String[] dataFormat = getDataFormat("x z d", new String[]{"x", "z", "d"});
@@ -35,8 +46,11 @@ void setup(){
     "0 3 0"
   };
   
-  String[] info = loadStrings("values.txt");
   
+  String[] info = null;
+  try{
+    loadStrings("values.txt");
+  {}
   
   double[] x = new double[info.length];
   double[] y = new double[info.length];
