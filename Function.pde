@@ -1,6 +1,8 @@
 
 
 
+
+
 public class Function{
   
   
@@ -29,7 +31,7 @@ public class Function{
       }
     }
     //println(x + " " + y);
-    //rV = 1.0 / (y + x);
+    rV = y * y + x * (x - 50);
     return (float) rV;
   }
   
